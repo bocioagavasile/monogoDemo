@@ -7,7 +7,6 @@
         </item>
     </argument>
     <settings>
-
         <spinner>spinner_columns</spinner>
         <deps>
             <dep>monogo_weather_listing.monogo_weather_listing_data_source</dep>
@@ -66,7 +65,6 @@
             </argument>
         </selectionsColumn>
 
-
         <column name="entity_id">
             <settings>
                 <filter>text</filter>
@@ -85,6 +83,16 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Location</label>
+            </settings>
+        </column>
+
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <dateFormat>yyyy-MM-dd hh:mm:ss</dateFormat>
+                <label translate="true">Created At</label>
+                <timezone>false</timezone>
             </settings>
         </column>
     </columns>

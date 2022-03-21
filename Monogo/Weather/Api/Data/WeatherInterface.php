@@ -3,6 +3,7 @@
 namespace Monogo\Weather\Api\Data;
 
 use Magento\Framework\Api\ExtensibleDataInterface;
+use Magento\Tests\NamingConvention\true\mixed;
 
 /**
  * @api
@@ -13,7 +14,7 @@ interface WeatherInterface extends ExtensibleDataInterface
     const ENTITY_ID = 'entity_id';
     const VALUE = 'value';
     const LOCATION = 'location';
-    const CREATED_AT = 'create_at';
+    const CREATED_AT = 'created_at';
 
     /**
      * @param int $entityId

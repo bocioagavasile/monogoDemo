@@ -7,7 +7,7 @@
         <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="ENTITY ID"/>
         <column xsi:type="smallint" name="value"  comment="VALUE" />
         <column xsi:type="text" name="location"  comment="LOCATION" />
-        <column xsi:type="timestamp" name="create_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Create At"/>
+        <column xsi:type="timestamp" name="created_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
