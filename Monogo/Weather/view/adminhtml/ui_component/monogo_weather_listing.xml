@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">monogo_weather_listing.monogo_weather_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+
+        <spinner>spinner_columns</spinner>
+        <deps>
+            <dep>monogo_weather_listing.monogo_weather_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="monogo_weather_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+<!--        <aclResource>Monogo_Weather::weather</aclResource>-->
+        <dataProvider class="\Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="monogo_weather_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+     <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters" />
+        <paging name="listing_paging"/>
+
+         <massaction name="listing_massaction">
+
+             <action name="delete">
+                 <settings>
+                     <confirm>
+                         <message translate="true">Are you sure you want to delete selected items?</message>
+                         <title translate="true">Delete items</title>
+                     </confirm>
+                     <url path="monogo_weather/weather/massDelete"/>
+                     <type>delete</type>
+                     <label translate="true">Delete</label>
+                 </settings>
+             </action>
+
+         </massaction>
+    </listingToolbar>
+
+    <columns name="spinner_columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="label" xsi:type="string" translate="true">Checkbox</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+
+
+        <column name="entity_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Entity ID</label>
+            </settings>
+        </column>
+
+        <column name="value">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Value</label>
+            </settings>
+        </column>
+
+        <column name="location">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Location</label>
+            </settings>
+        </column>
+    </columns>
+
+</listing>
+

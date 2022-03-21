@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Monogo_Weather::menu" title="MonogoDemo" module="Monogo_Weather" sortOrder="10" resource="Monogo_Weather::menu" />
+        <add id="Monogo_Weather::weather" title="Weather" translate="title" sortOrder="100" module="Monogo_Weather" parent="Monogo_Weather::menu" action="monogo_weather/weather/index" resource="Monogo_Weather::weather"/>
+    </menu>
+</config>
