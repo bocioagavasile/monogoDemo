@@ -1,13 +1,16 @@
 <?php
-namespace Monogo\Weathert\Console\Command;
+namespace Monogo\Weather\Console\Command;
 
 use Magento\Framework\App\State;
+use Monogo\WeatherApi\Model\Api\WeatherApiInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Monogo\Weather\Api\WeatherRepositoryInterface;
 use Monogo\Weather\Api\Data\WeatherInterfaceFactory;
+
+use Monogo\WeatherApi\Model\WearherApiInterface;
 
 class AddWeatherEntry extends Command
 {
@@ -26,23 +29,26 @@ class AddWeatherEntry extends Command
     protected $weatherFactory;
 
     /**
+     * @var WeatherApiInterface
+     */
+    protected $weatherApi;
+
+    /**
      * @var State
      */
     private $state;
 
-    /**
-     * @param State $state
-     * @param WeatherRepositoryInterface $weatherRepository
-     * @param WeatherInterfaceFactory $weatherFactory
-     */
+
     public function __construct(
         State $state,
         WeatherRepositoryInterface $weatherRepository,
-        WeatherInterfaceFactory $weatherFactory
+        WeatherInterfaceFactory $weatherFactory,
+        WeatherApiInterface $weatherApi
     ) {
         $this->state = $state;
         $this->weatherRepository = $weatherRepository;
         $this->weatherFactory = $weatherFactory;
+        $this->weatherApi = $weatherApi;
         parent::__construct();
     }
 
@@ -52,19 +58,7 @@ class AddWeatherEntry extends Command
     protected function configure()
     {
         $this->setName('monogo:weather:add')
-            ->setDescription('Add entry into db')
-            ->setDefinition([
-                new InputArgument(
-                    self::VALUE,
-                    InputArgument::OPTIONAL,
-                    'value'
-                ),
-                new InputArgument(
-                    self::LOCATION,
-                    InputArgument::OPTIONAL,
-                    'location'
-                ),
-            ]);
+            ->setDescription('Add entry into db');
 
         parent::configure();
     }
@@ -77,15 +71,8 @@ class AddWeatherEntry extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $value = $input->getArgument(self::VALUE);
-        $location = $input->getArgument(self::LOCATION);
+        $$this->weatherApi->getLocationSearch('Lublin');
 
-        //todo clean this - add validation and logic
-        $newWeather = $this->weatherFactory->create();
-        $newWeather->setValue($value)
-            ->setLocation();
 
-        $this->weatherRepository->save($newWeather);
-        //todo clean this
     }
 }

@@ -17,7 +17,7 @@ class Syncweather
      */
     public function execute()
     {
-        //todo pull weather from api
+
 
     }
 

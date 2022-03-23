@@ -3,15 +3,15 @@
     <preference for="Monogo\Weather\Api\Data\WeatherInterface" type="Monogo\Weather\Model\Weather" />
     <preference for="Monogo\Weather\Api\Data\WeatherSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
     <preference for="Monogo\Weather\Api\WeatherRepositoryInterface" type="Monogo\Weather\Model\WeatherRepository" />
+    <preference for="Monogo\Weather\Model\Services\GetWeatherAtInterface" type="Monogo\Weather\Model\Services\GetWeather" />
 
-<!-- some error in local env due to Monogo\Weather\Console\Command\AddWeatherEntry -->
-<!--    <type name="Magento\Framework\Console\CommandListInterface">-->
-<!--        <arguments>-->
-<!--            <argument name="commands" xsi:type="array">-->
-<!--                <item name="create_weather_entry_in_db" xsi:type="object">Monogo\Weather\Console\Command\AddWeatherEntry</item>-->
-<!--            </argument>-->
-<!--        </arguments>-->
-<!--    </type>-->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="create_weather_entry_in_db" xsi:type="object">Monogo\Weather\Console\Command\AddWeatherEntry</item>
+            </argument>
+        </arguments>
+    </type>
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>

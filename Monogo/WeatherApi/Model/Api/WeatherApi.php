@@ -22,20 +22,53 @@ class WeatherApi implements WeatherApiInterface
     }
 
     /**
-     * @param $location
-     * @return void
+     * @inheritDoc
      */
-    public function getWeather($location)
+    public function getWeather($locationKey)
     {
-        // TODO: Implement getWeather() method.
+        $url = $this->createConditionUrl($locationKey).'?apikey=mJFdVeq0XLvnjfQKELmrHedGn8oueYAI';
+
+        $response = $this->curl->get($url);
+        $data = json_decode($response->getBody()->getContents());
+
+        var_dump($data);
+        die();
+
     }
 
     /**
-     * @return mixed|void
+     * @inheritDoc
      */
-    public function getLocations()
+    public function getLocationSearch($string)
     {
-        // TODO: Implement getLocations() method.
+
+        $url = self::LOCATION_SEARCH_URL.'?apikey=mJFdVeq0XLvnjfQKELmrHedGn8oueYAI&q='.$string;
+
+        $response = $this->curl->get($url);
+        $data = json_decode($response->getBody()->getContents());
+
+        $locationData = [];
+        if(isset($data[0])){
+            $firstLocation = $data[0];
+            $locationData['city'] = $firstLocation->LocalizedName;
+            $locationData['key'] = $firstLocation->Key;
+        }
+        return $locationData;
+
     }
+
+    /**
+     * @param string $locationKey
+     * @return void
+     */
+    private function createConditionUrl($locationKey){
+
+        return self::CURRENT_CONDITION_URL.'/'.$locationKey;
+
+    }
+
+
+
+
 
 }
